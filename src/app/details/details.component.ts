@@ -1,5 +1,4 @@
-import { JsonPipe } from '@angular/common';
-import { Component, inject, Pipe } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HousingService } from '../housing.service';
 import { Housinglocation } from '../housinglocation';
@@ -7,7 +6,7 @@ import { Housinglocation } from '../housinglocation';
 @Component({
   selector: 'app-details',
   standalone: true,
-  imports: [JsonPipe],
+  imports: [],
   templateUrl: './details.component.html',
   styleUrl: './details.component.css'
 })
