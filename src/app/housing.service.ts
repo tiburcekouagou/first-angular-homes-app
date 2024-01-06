@@ -6,6 +6,7 @@ import { Housinglocation } from './housinglocation';
 })
 export class HousingService {
   readonly baseUrl = "https://angular.dev/assets/tutorials/common"
+  readonly url = 'http://localhost:3000/locations';
 
   housingLocationList: Housinglocation[] = [
     {
@@ -115,8 +116,10 @@ export class HousingService {
    * Function that returns all the housings location
    * @returns all the housings location
    */
-  getAllHousingLocations(): Housinglocation[] {
-    return this.housingLocationList;
+  async getAllHousingLocations(): Promise<Housinglocation[]> {
+    // return this.housingLocationList;
+    const data = await fetch(this.url);
+    return (await data.json()) ?? [];
   }
 
   /**
@@ -124,8 +127,10 @@ export class HousingService {
    * @param id the id of the housing we are looking for
    * @returns the specific details of the housing with the corresponding id or undefined if nothing is found
    */
-  getHousingLocationById(id: number): Housinglocation | undefined {
-    return this.housingLocationList.find(housingLocation => housingLocation.id === id);
+  async getHousingLocationById(id: number): Promise<Housinglocation | undefined> {
+    // return this.housingLocationList.find(housingLocation => housingLocation.id === id);
+    const data = await fetch(`${this.url}/${id}`)
+    return (await data.json()) ?? [];
   }
 
   /**
